@@ -1,9 +1,4 @@
-/*********************************
-    Copyright: OroChippw
-    Author: OroChippw
-    Date: 2023.08.31
-    Description:
-*********************************/
+
 #pragma once
 #pragma warning(disable:4819) 
 #pragma warning(disable:4267) 
@@ -17,21 +12,21 @@
 
 
 inline bool fileExists(const std::string& filename) {
-    std::ifstream file(filename.c_str());
-    return file.good();
+	std::ifstream file(filename.c_str());
+	return file.good();
 }
 
 inline wchar_t* multi_Byte_To_Wide_Char(std::string& pKey)
 {
-    // string è½¬ char*
-    const char* pCStrKey = pKey.c_str();
-    // ç¬¬ä¸€æ¬¡è°ƒç”¨è¿”å›è½¬æ¢åçš„å­—ç¬¦ä¸²é•¿åº¦ï¼Œç”¨äºç¡®è®¤ä¸ºwchar_t*å¼€è¾Ÿå¤šå¤§çš„å†…å­˜ç©ºé—´
-    size_t pSize = MultiByteToWideChar(CP_OEMCP, 0, pCStrKey, strlen(pCStrKey) + 1, NULL, 0);
-    wchar_t* pWCStrKey = new wchar_t[pSize];
-    // ç¬¬äºŒæ¬¡è°ƒç”¨å°†å•å­—èŠ‚å­—ç¬¦ä¸²è½¬æ¢æˆåŒå­—èŠ‚å­—ç¬¦ä¸²
-    MultiByteToWideChar(CP_OEMCP, 0, pCStrKey, strlen(pCStrKey) + 1, pWCStrKey, pSize);
-    // ä¸è¦å¿˜è®°åœ¨ä½¿ç”¨å®Œwchar_t*ådelete[]é‡Šæ”¾å†…å­˜
-    return pWCStrKey;
+	// string ×ª char*
+	const char* pCStrKey = pKey.c_str();
+	// µÚÒ»´Îµ÷ÓÃ·µ»Ø×ª»»ºóµÄ×Ö·û´®³¤¶È£¬ÓÃÓÚÈ·ÈÏÎªwchar_t*¿ª±Ù¶à´óµÄÄÚ´æ¿Õ¼ä
+	size_t pSize = MultiByteToWideChar(CP_OEMCP, 0, pCStrKey, strlen(pCStrKey) + 1, NULL, 0);
+	wchar_t* pWCStrKey = new wchar_t[pSize];
+	// µÚ¶ş´Îµ÷ÓÃ½«µ¥×Ö½Ú×Ö·û´®×ª»»³ÉË«×Ö½Ú×Ö·û´®
+	MultiByteToWideChar(CP_OEMCP, 0, pCStrKey, strlen(pCStrKey) + 1, pWCStrKey, pSize);
+	// ²»ÒªÍü¼ÇÔÚÊ¹ÓÃÍêwchar_t*ºódelete[]ÊÍ·ÅÄÚ´æ
+	return pWCStrKey;
 }
 
 #endif // UTILS_H

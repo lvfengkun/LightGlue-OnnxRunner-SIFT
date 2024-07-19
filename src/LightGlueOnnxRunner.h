@@ -1,8 +1,8 @@
 /*********************************
-    Copyright: OroChippw
-    Author: OroChippw
-    Date: 2023.08.31
-    Description:
+	Copyright: OroChippw
+	Author: OroChippw
+	Date: 2023.08.31
+	Description:
 *********************************/
 #pragma once
 #pragma warning(disable:4819) 
@@ -12,7 +12,7 @@
 
 #include <opencv2/opencv.hpp>
 #include <onnxruntime_cxx_api.h>
-// #include <cuda_provider_factory.h>  // Ëã•Âú®GPUÁéØÂ¢É‰∏ãËøêË°åÂèØ‰ª•‰ΩøÁî®cudaËøõË°åÂä†ÈÄü
+// #include <cuda_provider_factory.h>  // »Ù‘⁄GPUª∑æ≥œ¬‘À––ø…“‘ π”√cudaΩ¯––º”ÀŸ
 
 #include "utils.h"
 #include "transform.h"
@@ -24,44 +24,44 @@ class LightGlueOnnxRunner : public BaseFeatureMatchOnnxRunner
 private:
 	const unsigned int num_threads;
 
-    Ort::Env env;
-    Ort::SessionOptions session_options;
-    std::unique_ptr<Ort::Session> session;
-    Ort::AllocatorWithDefaultOptions allocator;
+	Ort::Env env;
+	Ort::SessionOptions session_options;
+	std::unique_ptr<Ort::Session> session;
+	Ort::AllocatorWithDefaultOptions allocator;
 
-    std::vector<char*> InputNodeNames;
-    std::vector<std::vector<int64_t>> InputNodeShapes;
+	std::vector<char*> InputNodeNames;
+	std::vector<std::vector<int64_t>> InputNodeShapes;
 
-    std::vector<char*> OutputNodeNames;
-    std::vector<std::vector<int64_t>> OutputNodeShapes;
+	std::vector<char*> OutputNodeNames;
+	std::vector<std::vector<int64_t>> OutputNodeShapes;
 
-    float matchThresh = 0.0f;
-    long long timer = 0.0f;
+	float matchThresh = 0.0f;
+	long long timer = 0.0f;
 
-    std::vector<float> scales = {1.0f , 1.0f};
+	std::vector<float> scales = { 1.0f , 1.0f };
 
-    std::vector<Ort::Value> output_tensors;
-    std::pair<std::vector<cv::Point2f>, std::vector<cv::Point2f>> keypoints_result;
+	std::vector<Ort::Value> output_tensors;
+	std::pair<std::vector<cv::Point2f>, std::vector<cv::Point2f>> keypoints_result;
 
 private:
-    cv::Mat PreProcess(Configuration cfg , const cv::Mat& srcImage , float& scale);
-    int Inference(Configuration cfg , const cv::Mat& src , const cv::Mat& dest);
-    int PostProcess(Configuration cfg);
+	cv::Mat PreProcess(Configuration cfg, const cv::Mat& srcImage, float& scale);
+	int Inference(Configuration cfg, const cv::Mat& src, const cv::Mat& dest);
+	int PostProcess(Configuration cfg);
 
 public:
-    explicit LightGlueOnnxRunner(unsigned int num_threads = 1);
-    ~LightGlueOnnxRunner();
+	explicit LightGlueOnnxRunner(unsigned int num_threads = 1);
+	~LightGlueOnnxRunner();
 
-    float GetMatchThresh();
-    void SetMatchThresh(float thresh);
-    double GetTimer(std::string name);
+	float GetMatchThresh();
+	void SetMatchThresh(float thresh);
+	double GetTimer(std::string name);
 
-    std::pair<std::vector<cv::Point2f>, std::vector<cv::Point2f>> GetKeypointsResult();
+	std::pair<std::vector<cv::Point2f>, std::vector<cv::Point2f>> GetKeypointsResult();
 
-    int InitOrtEnv(Configuration cfg);
-    
-    std::pair<std::vector<cv::Point2f>, std::vector<cv::Point2f>> InferenceImage(Configuration cfg , \
-            const cv::Mat& srcImage, const cv::Mat& destImage);
+	int InitOrtEnv(Configuration cfg);
+
+	std::pair<std::vector<cv::Point2f>, std::vector<cv::Point2f>> InferenceImage(Configuration cfg, \
+		const cv::Mat& srcImage, const cv::Mat& destImage);
 
 };
 

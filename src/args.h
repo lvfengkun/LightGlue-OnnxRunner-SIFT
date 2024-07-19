@@ -1,8 +1,8 @@
 /*********************************
-    Copyright: OroChippw
-    Author: OroChippw
-    Date: 2023.09.11
-    Description: 
+	Copyright: OroChippw
+	Author: OroChippw
+	Date: 2023.09.11
+	Description:
 *********************************/
 #pragma once
 
@@ -11,5 +11,5 @@
 
 inline void printUsage(char** argv)
 {
-    
+
 }
